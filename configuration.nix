@@ -99,14 +99,20 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-   firefox
+   neovim
    wget
    lf
    tmux
    slack
    git
    gh
-   
+   bitwarden
+   firefox
+   pkgs.atuin
+   terraform
+   awscli2
+   tfswitch
+   vscode
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -139,6 +145,10 @@
 
 programs = {
     zsh = {
+      autosuggestions.enable = true;
+      syntaxHighlighting.enable = true; 
+      promptInit = ''                                                                                                                        
+        eval "$(atuin init zsh --disable-up-arrow)"; '';     
       shellAliases = {
        aws-switch="$HOME/.aws/aws-switch.sh";
       };
@@ -147,8 +157,11 @@ programs = {
         enable = true;
         theme = "robbyrussell";
         plugins = [
-          "git"
+          "git aws terraform"
         ];
+        customPkgs = with pkgs; [                                                                                                                      
+          nix-zsh-completions                                                                                                                          
+        ];  
       };
     };
   };
@@ -170,5 +183,7 @@ environment.etc = {
   users.users.root = {
     shell = pkgs.zsh;
   };
+
+   virtualisation.docker.enable = true;
 }
 
