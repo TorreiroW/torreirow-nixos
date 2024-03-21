@@ -83,11 +83,11 @@
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.wtoorren = {
+    shell = pkgs.zsh;
     isNormalUser = true;
     description = "Wouter van der Toorren";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      firefox
     #  thunderbird
     ];
   };
@@ -99,6 +99,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+   firefox
    wget
    lf
    tmux
@@ -135,5 +136,39 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
 
+
+programs = {
+    zsh = {
+      shellAliases = {
+       aws-switch="$HOME/.aws/aws-switch.sh";
+      };
+      enable = true;
+      ohMyZsh = {
+        enable = true;
+        theme = "robbyrussell";
+        plugins = [
+          "git"
+        ];
+      };
+    };
+  };
+
+environment.etc = {
+    "zshrc.local" = {
+      text = ''
+      PROMPT="%(?:%{$fg_bold[green]%}➜:%{$fg_bold[red]%}➜) %F{magenta}%n%f%{$fg[blue]%}@%M %{$fg[cyan]%}%c%{$reset_color%}"
+      PROMPT+=' $(git_prompt_info)'
+      ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}(%{$fg[red]%}"
+      ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
+      ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗"
+      ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
+      '';
+    };
+  };
+
+  users.defaultUserShell = pkgs.zsh;
+  users.users.root = {
+    shell = pkgs.zsh;
+  };
 }
 
