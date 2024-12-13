@@ -28,7 +28,7 @@
 
 
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-2305,  nixpkgs-2311, unstable, nix-darwin, home-manager, agenix, bmc, homeage, dirtygit, race, jsonify-aws-dotfiles, nixpkgs-2405}: 
+  outputs = inputs@{ self, nixpkgs, nixpkgs-2305,  nixpkgs-2311, unstable, nix-darwin, home-manager, agenix, bmc, homeage, dirtygit, race, jsonify-aws-dotfiles, nixpkgs-2405, nixpkgs-2411}: 
   let 
     system = "x86_64-linux";
     extraPkgs= {
