@@ -1,4 +1,5 @@
 session: Site TorrLinny
+startup_pane: 1
 
 root: /home/wtoorren/data/git/torreirow/notes/torrlinny
 
@@ -16,7 +17,7 @@ windows:
   - name: infra
     layout: main-horizontal
     commands:
-      - xdg-open http://localhost:1399
+      - xdg-open http://localhost:1399/torrlinny/
       - vim -c NERDTree
   - name: cmd
     layout: main-horizontal

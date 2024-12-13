@@ -1,6 +1,7 @@
 session: Witte Velden
 
-root: /home/wtoorren/data/git/torreirow/temp/stwv/cohub-test
+root: ~/data/git/torreirow/temp/stwv/stwv-development
+startup_pane: 1
 
 stop:
 
@@ -8,7 +9,7 @@ windows:
   - name: sync
     layout: main-horizontal
     commands:
-      - watch -n 10 git-sync -n
+      - #watch -n 60 git-sync -n
     panes:
       - type: horizontal
         commands:
