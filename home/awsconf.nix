@@ -144,6 +144,13 @@ in
         output = "json";
         group = "toorren";
       };
+
+      "255418484322-waardenburg" = {
+        region = "eu-central-1";
+        output = "json";
+        group = "waardenburg";
+      };
+
       "profile mustad-developer"= {
         role_arn = "arn:aws:iam::925937276627:role/developer";
         region = "us-east-2";

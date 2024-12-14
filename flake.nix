@@ -139,7 +139,8 @@
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
       linux-defaults = {pkgs,config,homeage,...}: {
-        home = { ##MAC
+        home = { 
+        username = "root"; # Dynamisch op basis van de huidige gebruiker
         homeDirectory = "/root";
       };
     };
@@ -151,7 +152,10 @@
         # the path to your home.nix.
         modules = [
          #./home/default.nix
-         ./home/linux-desktop.nix
+         ./home/zsh.nix
+         ./home/vim.nix
+         ./home/tmux.nix
+#         ./home/linux-desktop.nix
          ./home/firefox.nix
          linux-defaults
        ];
@@ -161,6 +165,41 @@
       });
   ### LINUX HOMEMANAGER END ROOT
 
+  ## LINUX HOMEMANAGER START ALL
+
+# homeConfigurations."default" = home-manager.lib.homeManagerConfiguration(
+#    let
+#      system = "x86_64-linux";
+#      pkgs = nixpkgs.legacyPackages.${system};
+#
+#      linux-defaults = {pkgs,config,homeage,...}: {
+#        home = { ##MAC
+#        homeDirectory = if config.username == "root" then "/root" else "/home/${config.username}"; 
+#      };
+#    };
+#
+#    in {
+#      inherit pkgs;
+#
+#        # Specify your home configuration modules here, for example,
+#        # the path to your home.nix.
+#
+#        modules = [
+#         #./home/default.nix
+#         ./home/linux-desktop.nix
+#         ./home/firefox.nix
+#         linux-defaults
+#       ];
+#
+#       extraSpecialArgs = {
+#          unstable = import unstable { inherit system; config.allowUnfree = true; };
+#       };
+#
+#        # Optionally use extraSpecialArgs
+#        # to pass through arguments to home.nix
+#
+#      });
+#
   ### LINUX HOMEMANAGER START WTOORREN
   # defaultPackage.x86_64-linux = home-manager.defaultPackage.x86_64-linux;
   homeConfigurations."wtoorren@linuxdesktop" = home-manager.lib.homeManagerConfiguration(
@@ -196,6 +235,7 @@
         # to pass through arguments to home.nix
 
       });
+      home.username="wtoorren";
   ### LINUX HOMEMANAGER END WTOORREN
 
   #### LINUX SERVER HOMEMANAGER START

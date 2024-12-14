@@ -1,4 +1,6 @@
-final: prev: {
+final: prev: 
+
+{
   quarto = prev.quarto.override {
     extraPythonPackages = ps: with ps; [
       plotly
@@ -7,8 +9,9 @@ final: prev: {
       matplotlib
       tabulate
     ];
+
   };
-  
+
 
   python311Packages = prev.python311Packages // {
     toggl-cli = prev.python311Packages.toggl-cli.overrideAttrs (old: rec {

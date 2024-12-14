@@ -21,8 +21,8 @@ programs.zsh = {
           tfunlock="terraform force-unlock -force ";
           ghrmbranch="for branch in $(git branch |grep -v -i -e main -e master); do git branch -D $branch; done";
           tfswitch="tfswitch -b $HOME/bin/terraform";
-          vpnkardisconnect="openvpn3 session-manage --disconnect --config $HOME/.config/openvpn/kar01.ovpn";
-          vpnkarconnect="openvpn3 session-start --config $HOME/.config/openvpn/kar01.ovpn";
+          vpnkardisconnect="openvpn3 session-manage --disconnect --config $HOME/.config/openvpn/lobos.ovpn";
+          vpnkarconnect="openvpn3 session-start --config $HOME/.config/openvpn/lobos.ovpn";
           qdm="cd ./output; qdm=$(gum choose $(ls -t *.html ; echo none| head -5)); if [[ $qdm != 'none' ]]; then firefox --new-tab $qdm 2>/dev/null;fi";
           smg="smug $(basename -s \".yml\" $(gum filter  $(ls ~/.config/smug/*.yml)))";
         };
